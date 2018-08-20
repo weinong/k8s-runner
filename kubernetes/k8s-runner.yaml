@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: k8s-runner
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-runner 
+  template:
+    metadata:
+      labels:
+        app: k8s-runner
+    spec:
+      containers:
+      - name: k8s-runner
+        image: weinong/k8s-runner:latest
+        imagePullPolicy: Always
+        command:
+        - "/runner"
+        - "--incluster"
+        - "true"
+        - "--svcWebhook"
+        - "<webhook url>"
+        - "--podWebhook"
+        - "<webhook url>"
+        - "--eventWebhook"
+        - "<webhook url>"
