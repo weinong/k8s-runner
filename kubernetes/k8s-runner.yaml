@@ -20,7 +20,6 @@ spec:
         command:
         - "/runner"
         - "--incluster"
-        - "true"
         - "--svcWebhook"
         - "<webhook url>"
         - "--podWebhook"
